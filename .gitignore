@@ -4,6 +4,7 @@ build/
 # Dependency directories
 fftw-3.3.3/
 cJSON-1.7.15/
+go_cart/cJSON.*
 
 # JS files
 node_modules/
