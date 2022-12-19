@@ -1,0 +1,15 @@
+# Directories of built files
+dist/
+build/
+# Dependency directories
+fftw-3.3.3/
+cJSON-1.7.15/
+
+# JS files
+node_modules/
+
+# Stuff related to IDEs
+.vscode/
+.idea/
+
+

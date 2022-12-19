@@ -1,0 +1,20 @@
+{
+  "root": true,
+  "parserOptions":  {
+    "parser": "babel-eslint",
+    "sourceType": "module"
+  },
+  "env": {
+    "browser": true
+  },
+  "plugins": [
+  ],
+  "extends": [
+    "airbnb-base"
+  ],
+  "ignorePatterns": ["**", "!src", "!src/**"],
+  "globals": {
+    "window": false,
+    "initGoCart": true
+  }
+}
