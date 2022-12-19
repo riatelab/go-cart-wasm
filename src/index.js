@@ -1,5 +1,7 @@
+// eslint-disable-next-line import/no-named-as-default, import/no-named-as-default-member
 import GoCartWasmModule from '../build/cart';
 
+// eslint-disable-next-line no-restricted-globals
 const isNumber = (value) => value != null && value !== '' && isFinite(value);
 
 /**
@@ -10,7 +12,7 @@ const isNumber = (value) => value != null && value !== '' && isFinite(value);
  * @return {{rawGeoJSON: string, rawCsv: string}}
  */
 const prepareGeoJSONandCSV = (geojson, fieldName) => {
-  const _geojson = JSON.parse(JSON.stringify(geojson));
+  const newGeojson = JSON.parse(JSON.stringify(geojson));
   const values = [];
   let xmin = Infinity;
   let xmax = -Infinity;
@@ -23,7 +25,7 @@ const prepareGeoJSONandCSV = (geojson, fieldName) => {
     ymin = Math.min(ymin, point[1]);
     ymax = Math.max(ymax, point[1]);
   };
-  _geojson.features.forEach((feature, i) => {
+  newGeojson.features.forEach((feature, i) => {
     const cartogramId = i + 1;
     // eslint-disable-next-line no-param-reassign
     feature.properties.cartogram_id = `${cartogramId}`;
@@ -46,9 +48,9 @@ const prepareGeoJSONandCSV = (geojson, fieldName) => {
     values.push({ cartogramId, value });
   });
 
-  _geojson.bbox = [xmin, ymin, xmax, ymax];
+  newGeojson.bbox = [xmin, ymin, xmax, ymax];
   const rawCsv = `Region Id, Region Data\n${values.map((v) => `${v.cartogramId}, ${v.value}`).join('\n')}`;
-  const rawGeoJSON = JSON.stringify(_geojson);
+  const rawGeoJSON = JSON.stringify(newGeojson);
   return { rawGeoJSON, rawCsv };
 };
 
@@ -84,6 +86,12 @@ const initGoCart = async (options = {}) => {
     GoCartWasm.FS.writeFile(pathInputJsonFile, rawGeoJSON);
     GoCartWasm.FS.writeFile(pathInputCsvFile, rawCsv);
 
+    const cleanUp = () => {
+      GoCartWasm.FS.unlink(pathInputJsonFile);
+      GoCartWasm.FS.unlink(pathInputCsvFile);
+      GoCartWasm.FS.unlink('cartogram.json');
+    };
+
     // Actually run the algorithm
     const retVal = GoCartWasm.ccall(
       'doCartogram',
@@ -92,16 +100,36 @@ const initGoCart = async (options = {}) => {
       [pathInputJsonFile, pathInputCsvFile],
     );
 
+    if (retVal !== 0) {
+      cleanUp();
+      throw new Error('Error while running the cartogram algorithm');
+    }
+
     // Read the result
     const data = GoCartWasm.FS.readFile('cartogram.json', { encoding: 'utf8' });
 
+    // Read the log file about area errors
+    const areaErrors = GoCartWasm.FS.readFile('area_error.dat', { encoding: 'utf8' });
+    const t = {};
+    areaErrors.split('\n').forEach((line) => {
+      const id = line.substring(7, line.indexOf(': '));
+      const errorValue = line.substring(line.indexOf('relative error = ') + 'relative error = '.length);
+      t[id] = +errorValue;
+    });
+
+    // Store the area error in each feature properties
+    const result = JSON.parse(data);
+    result.features.forEach((feature) => {
+      const id = feature.properties.cartogram_id;
+      // eslint-disable-next-line no-param-reassign
+      feature.properties.area_error = t[id];
+    });
+
     // Clean the memory / file system
-    GoCartWasm.FS.unlink(pathInputJsonFile);
-    GoCartWasm.FS.unlink(pathInputCsvFile);
-    GoCartWasm.FS.unlink('cartogram.json');
+    cleanUp();
 
     // Return the result
-    return JSON.parse(data);
+    return result;
   };
 
   return GoCartWasm;
