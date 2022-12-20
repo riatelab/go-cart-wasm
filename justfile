@@ -30,14 +30,14 @@ cjson:
         unzip v{{CJSON_VERSION}}.zip; \
         rm v{{CJSON_VERSION}}.zip; \
     fi
-    cp cJSON-{{CJSON_VERSION}}/cJSON.h go_cart/
-    cp cJSON-{{CJSON_VERSION}}/cJSON.c go_cart/
+    cp cJSON-{{CJSON_VERSION}}/cJSON.h go_cart/cartogram_generator/
+    cp cJSON-{{CJSON_VERSION}}/cJSON.c go_cart/cartogram_generator/
 
 build: clean fftw3 cjson
     mkdir -p build
-    cd go_cart/ && \
-    emcc --bind -I../{{FFTW_PACKAGE}}/api -L../{{FFTW_PACKAGE}}/.libs -DUSE_FFTW -lfftw3 main.c cartogram.c ffb_integrate.c fill_with_density.c ps_figure.c read_map.c process_json.c cJSON.c \
-        -o ../build/cart.js \
+    cd go_cart/cartogram_generator && \
+    emcc --bind -I../../{{FFTW_PACKAGE}}/api -L../../{{FFTW_PACKAGE}}/.libs -DUSE_FFTW -lfftw3 main.c cartogram.c ffb_integrate.c fill_with_density.c ps_figure.c read_map.c process_json.c cJSON.c \
+        -o ../../build/cart.js \
         -O3 \
         -s FORCE_FILESYSTEM \
         -s EXPORT_ES6=1 \

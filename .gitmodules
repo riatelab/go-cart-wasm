@@ -1,0 +1,4 @@
+[submodule "go_cart"]
+	path = go_cart
+	url = https://github.com/mthh/go_cart
+    branch = wasm-mod
