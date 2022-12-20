@@ -92,17 +92,21 @@ const initGoCart = async (options = {}) => {
       GoCartWasm.FS.unlink('cartogram.json');
     };
 
-    // Actually run the algorithm
-    const retVal = GoCartWasm.ccall(
-      'doCartogram',
-      'number',
-      ['string', 'string'],
-      [pathInputJsonFile, pathInputCsvFile],
-    );
-
-    if (retVal !== 0) {
+    try {
+      // Actually run the algorithm
+      const retVal = GoCartWasm.ccall(
+        'doCartogram',
+        'number',
+        ['string', 'string'],
+        [pathInputJsonFile, pathInputCsvFile],
+      );
+      if (retVal !== 0) {
+        cleanUp();
+        throw new Error('Error while running the cartogram algorithm');
+      }
+    } catch (e) {
       cleanUp();
-      throw new Error('Error while running the cartogram algorithm');
+      throw e;
     }
 
     // Read the result

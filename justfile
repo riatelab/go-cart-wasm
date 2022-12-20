@@ -1,4 +1,5 @@
 set shell := ["bash", "-uc"]
+set dotenv-load
 
 FFTW_PACKAGE := "fftw-3.3.3"
 CJSON_VERSION := "1.7.15"
@@ -44,4 +45,5 @@ build: clean fftw3 cjson
         -s EXPORTED_FUNCTIONS="['_doCartogram']" \
         -s EXPORTED_RUNTIME_METHODS="['ccall', 'FS']" \
         -s EXPORT_NAME="GoCart" \
-        -s ALLOW_MEMORY_GROWTH
+        -s ALLOW_MEMORY_GROWTH=1 \
+        -s MAXIMUM_MEMORY=4096mb
