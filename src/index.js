@@ -82,7 +82,9 @@ const initGoCart = async (options = {}) => {
     const pathInputJsonFile = '/data/test.json';
     const pathInputCsvFile = '/data/test.csv';
 
-    GoCartWasm.FS.mkdir('/data');
+    if (GoCartWasm.FS.findObject('/data') === null) {
+      GoCartWasm.FS.mkdir('/data');
+    }
     GoCartWasm.FS.writeFile(pathInputJsonFile, rawGeoJSON);
     GoCartWasm.FS.writeFile(pathInputCsvFile, rawCsv);
 
@@ -90,6 +92,7 @@ const initGoCart = async (options = {}) => {
       GoCartWasm.FS.unlink(pathInputJsonFile);
       GoCartWasm.FS.unlink(pathInputCsvFile);
       GoCartWasm.FS.unlink('cartogram.json');
+      GoCartWasm.FS.unlink('area_error.dat');
     };
 
     try {
