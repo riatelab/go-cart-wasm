@@ -10,7 +10,6 @@ clean-all: clean
     rm -rf cJSON-{{CJSON_VERSION}} {{FFTW_PACKAGE}}
 
 clean:
-    rm -rf build/
     rm -f fftw-3.3.3/.libs/*.*
     rm -f fftw-3.3.3/api/*.o
 
@@ -21,7 +20,7 @@ fftw3:
         rm {{FFTW_PACKAGE}}.tar.gz; \
     fi
     cd {{FFTW_PACKAGE}} && \
-    emconfigure ./configure --disable-fortran && \
+    CFLAGS='-O3' emconfigure ./configure --disable-fortran && \
     emmake make -j4
 
 cjson:
@@ -33,7 +32,10 @@ cjson:
     cp cJSON-{{CJSON_VERSION}}/cJSON.h go_cart/cartogram_generator/
     cp cJSON-{{CJSON_VERSION}}/cJSON.c go_cart/cartogram_generator/
 
-build: clean fftw3 cjson
+build-deps: clean fftw3 cjson
+
+build:
+    rm -rf build
     mkdir -p build
     cd go_cart/cartogram_generator && \
     emcc --bind -I../../{{FFTW_PACKAGE}}/api -L../../{{FFTW_PACKAGE}}/.libs -DUSE_FFTW -lfftw3 main.c cartogram.c ffb_integrate.c fill_with_density.c ps_figure.c read_map.c process_json.c cJSON.c \
@@ -45,5 +47,4 @@ build: clean fftw3 cjson
         -s EXPORTED_FUNCTIONS="['_doCartogram']" \
         -s EXPORTED_RUNTIME_METHODS="['ccall', 'FS']" \
         -s EXPORT_NAME="GoCart" \
-        -s ALLOW_MEMORY_GROWTH=1 \
-        -s MAXIMUM_MEMORY=4096mb
+        -s ALLOW_MEMORY_GROWTH=1

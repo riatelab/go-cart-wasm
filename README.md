@@ -41,15 +41,23 @@ Moreover, the data have to be in a projected reference coordinate system that ma
 
 ### Installation for development
 
-Requirements:
-- The **Just** command runner (https://github.com/casey/just)
-- EMSDK (https://emscripten.org/docs/getting_started/downloads.html)
-- NPM (https://www.npmjs.com/get-npm)
+**Requirements:**
 
-1) Install Just, install EMSDK.
-2) Activate the various environment variables of EMSDK in the current terminal (`source ./emsdk_env.sh` in emsdk directory).
-3) Run `npm run build` to build the WASM module and the JS wrapper.
-4) Get the built files from the `dist` directory.
+- The **Just** command runner (https://github.com/casey/just)
+- Emscripten SDK (https://emscripten.org/docs/getting_started/downloads.html)
+- Node.js / npm (https://www.npmjs.com/get-npm)
+
+**Install and compile dependencies:**
+
+1) Install Just, install Emscripten SDK, install node.js / npm.
+2) Install node dependencies with `npm install`.
+3) Activate the various environment variables of Emscripten SDK in the current terminal (`source ./emsdk_env.sh` in emsdk directory).
+4) Build the C dependencies with `npm run build-deps`.
+
+**Build the WASM/JS code:**
+
+1) Run `npm run build` to build the WASM module and the JS wrapper. If you change stuff in the JS wrapper (in `src`) or in the C code of go_cart (in `go_cart`), you can resume from here.
+2) Get the built files from the `dist` directory.
 
 Note that this has only been tested on GNU/Linux and that these instructions may need to be modified to work on Mac OS X and Windows.
 
