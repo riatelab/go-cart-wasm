@@ -3,14 +3,26 @@
   "version": "0.1.0",
   "description": "Flow-Based Cartogram Generator in WASM",
   "private": true,
+  "files": [
+    "dist/cart.wasm",
+    "dist/go-cart.js"
+  ],
+  "main": "dist/go-cart.js",
   "scripts": {
     "lint": "eslint .",
     "build-deps": "just build-deps",
     "build": "just build && rollup --config rollup.config.mjs",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
-  "author": "",
+  "author": "mthh",
   "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/mthh/go-cart-wasm.git"
+  },
+  "bugs": {
+    "url": "https://github.com/mthh/go-cart-wasm/issues"
+  },
   "dependencies": {
     "@rollup/plugin-node-resolve": "^15.0.1",
     "@rollup/plugin-virtual": "^3.0.1"
