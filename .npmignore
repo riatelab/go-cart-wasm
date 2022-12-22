@@ -1,0 +1,10 @@
+build/
+cJSON-1.7.15/
+fftw-3.3.3/
+go_cart/
+.idea/
+src/
+.babelrc
+.eslintrc.json
+justfile
+rollup.config.mjs

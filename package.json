@@ -14,7 +14,7 @@
     "build": "just build && rollup --config rollup.config.mjs",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
-  "author": "mthh",
+  "author": "Matthieu Viry <matthieu.viry@cnrs.fr>",
   "license": "MIT",
   "repository": {
     "type": "git",
@@ -23,6 +23,7 @@
   "bugs": {
     "url": "https://github.com/mthh/go-cart-wasm/issues"
   },
+  "homepage": "https://github.com/mthh/go-cart-wasm",
   "dependencies": {
     "@rollup/plugin-node-resolve": "^15.0.1",
     "@rollup/plugin-virtual": "^3.0.1"
