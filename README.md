@@ -39,6 +39,8 @@ initGoCart({
 Note that the data that is passed to the `makeCartogram` function must be a valid GeoJSON FeatureCollection, its features must be of type Polygon or MultiPolygon and the field name must be a valid property of its features.
 Moreover, the data have to be in a projected reference coordinate system that maintains the areas of the polygons (e.g. Lambert-93 / EPSG:2154 for Metropolitan France, EPSG:3035 for the European Union, etc.). Performing the calculation in geographic coordinates (e.g. EPSG:4326) would give erroneous results.
 
+Note also that by default the calculation is done in the main thread. The freedom is left to the user to import go-cart.js from a webworker and use it that way (nevertheless you will have to implement a basic conversation between the main thread and the webworker - a rudimentary example will be proposed soon).
+
 ### Installation for development
 
 **Requirements:**
