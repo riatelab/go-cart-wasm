@@ -12,6 +12,7 @@
     "lint": "eslint .",
     "build-deps": "just build-deps",
     "build": "just build && rollup --config rollup.config.mjs",
+    "build-debug": "just build DEBUG && rollup --config rollup.config.mjs",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "author": "Matthieu Viry <matthieu.viry@cnrs.fr>",

@@ -59,6 +59,7 @@ Note also that by default the calculation is done in the main thread. The freedo
 **Build the WASM/JS code:**
 
 1) Run `npm run build` to build the WASM module and the JS wrapper. If you change stuff in the JS wrapper (in `src`) or in the C code of go_cart (in `go_cart`), you can resume from here.
+   If you want to see debug information about the progress of the cartogram creation in the console (grid size used, number of iterations, max area error, correction factor, etc.) you can compile with the DEBUG flag with `npm run build-debug`.
 2) Get the built files from the `dist` directory.
 
 Note that this has only been tested on GNU/Linux and that these instructions may need to be modified to work on Mac OS X and Windows.
