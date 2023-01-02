@@ -9,30 +9,37 @@ This is a port of the [reference implementation](https://github.com/Flow-Based-C
 The library is available as a JS module, and can be used as follows:
 
 ```js
+import initGoCart from 'go-cart-wasm';
+
 initGoCart()
-  .then((GoCartModule) => {
-    const data = { // The GeoJSON containing the data to be transformed
+  .then((GoCart) => {
+    // The GeoJSON containing the data to be transformed
+    const data = {
       type: 'FeatureCollection',
       features: ...
     };
-    const fieldName = 'POP2021'; // The name of the field that contains the data on which the cartogram will be based
     
-    const dataCartogram = GoCartModule.makeCartogram(data, fieldName); // Call the function that creates the cartogram
+    // The name of the field that contains the data on which the cartogram will be based
+    const fieldName = 'POP2021';
+
+    // Call the function that creates the cartogram
+    const dataCartogram = GoCart.makeCartogram(data, fieldName);
     
     console.log(dataCartogram); // The resulting GeoJSON
   });
 ```
 
-Optionally, you can also pass a `config` object as argument to the `initGoCart` function, which can contain the `locateFile` property: if set, it will be used to locate the WASM file (which is needed by the library). For example:
+Optionally, and depending on how you import the library, you may also need to pass a `config` object as argument to the `initGoCart` function, which can contain the `locateFile` property: if set, it will be used to locate the WASM file (which is needed by the library). For example:
 
 ```js
-initGoCart({
-  locateFile: (path) => {
-    return 'js/cart.wasm';
-  },
-}).then((GoCartModule) => {
-    ...
-  });
+initGoCart = require("https://unpkg.com/go-cart-wasm@0.1.0/dist/go-cart.js");
+
+GoCart = await initGoCart({
+  locateFile: (path) => 'https://unpkg.com/go-cart-wasm@0.1.0/dist/cart.wasm',
+});
+
+// Use GoCart as in the previous example
+// ...
 ```
 
 Note that the data that is passed to the `makeCartogram` function must be a valid GeoJSON FeatureCollection, its features must be of type Polygon or MultiPolygon and the field name must be a valid property of its features.
