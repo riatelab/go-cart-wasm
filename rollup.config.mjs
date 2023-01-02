@@ -33,14 +33,4 @@ export default [
       name: 'initGoCart',
     }
   },
-  // {
-  //   plugins: [nodeResolve(), commonjs()],
-  //   input: 'src/index.js',
-  //   output: {
-  //     file: 'build/package/go-cart.dev.js',
-  //     format: 'umd',
-  //     name: 'initGoCart',
-  //     sourcemap: 'inline',
-  //   },
-  // },
 ];

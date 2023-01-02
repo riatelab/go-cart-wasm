@@ -2,12 +2,12 @@
   "name": "go-cart-wasm",
   "version": "0.1.0",
   "description": "Flow-Based Cartogram Generator in WASM",
-  "private": true,
   "files": [
     "dist/cart.wasm",
     "dist/go-cart.js"
   ],
   "main": "dist/go-cart.js",
+  "type": "module",
   "scripts": {
     "lint": "eslint .",
     "build-deps": "just build-deps",
