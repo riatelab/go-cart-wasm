@@ -1,6 +1,6 @@
 {
   "name": "go-cart-wasm",
-  "version": "0.1.0",
+  "version": "0.2.0",
   "description": "Flow-Based Cartogram Generator in WASM",
   "files": [
     "dist/cart.wasm",
@@ -25,24 +25,23 @@
     "url": "https://github.com/mthh/go-cart-wasm/issues"
   },
   "homepage": "https://github.com/mthh/go-cart-wasm",
-  "dependencies": {
-    "@rollup/plugin-node-resolve": "^15.0.1",
-    "@rollup/plugin-virtual": "^3.0.1"
-  },
+  "dependencies": {},
   "devDependencies": {
-    "@babel/cli": "^7.19.3",
-    "@babel/core": "^7.20.5",
+    "@babel/cli": "^7.20.7",
+    "@babel/core": "^7.20.7",
     "@babel/preset-env": "^7.20.2",
     "@rollup/plugin-babel": "^6.0.3",
     "@rollup/plugin-commonjs": "^24.0.0",
+    "@rollup/plugin-node-resolve": "^15.0.1",
+    "@rollup/plugin-virtual": "^3.0.1",
     "babel-eslint": "^10.1.0",
-    "eslint": "^8.30.0",
+    "eslint": "^8.31.0",
     "eslint-config-airbnb": "^19.0.4",
     "eslint-plugin-import": "^2.26.0",
     "eslint-plugin-jsx-a11y": "^6.6.1",
     "eslint-plugin-react": "^7.31.11",
     "eslint-plugin-react-hooks": "^4.6.0",
-    "rollup": "^3.7.5",
+    "rollup": "^3.9.1",
     "rollup-plugin-copy": "^3.4.0"
   }
 }

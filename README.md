@@ -32,14 +32,30 @@ initGoCart()
 Optionally, and depending on how you import the library, you may also need to pass a `config` object as argument to the `initGoCart` function, which can contain the `locateFile` property: if set, it will be used to locate the WASM file (which is needed by the library). For example:
 
 ```js
-initGoCart = require("https://unpkg.com/go-cart-wasm@0.1.0/dist/go-cart.js");
+const initGoCart = require("https://unpkg.com/go-cart-wasm@latest/dist/go-cart.js");
 
-GoCart = await initGoCart({
-  locateFile: (path) => 'https://unpkg.com/go-cart-wasm@0.1.0/dist/cart.wasm',
+const GoCart = await initGoCart({
+  locateFile: (path) => 'https://unpkg.com/go-cart-wasm@latest/dist/cart.wasm',
 });
 
 // Use GoCart as in the previous example
 // ...
+```
+
+Or in a HTML document:
+
+```html
+```html
+<script src="https://cdn.jsdelivr.net/npm/go-cart-wasm@latest"></script>
+<script>
+let GoCart;
+initGoCart({
+  locateFile: () => 'https://cdn.jsdelivr.net/npm/go-cart-wasm@latest/dist/cart.wasm',
+}).then((GoCartModule) => {
+  GoCart = GoCartModule;
+
+})
+</script>
 ```
 
 Note that the data that is passed to the `makeCartogram` function must be a valid GeoJSON FeatureCollection, its features must be of type Polygon or MultiPolygon and the field name must be a valid property of its features.

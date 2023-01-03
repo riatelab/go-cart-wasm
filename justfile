@@ -12,6 +12,7 @@ clean-all: clean
 clean:
     rm -f fftw-3.3.3/.libs/*.*
     rm -f fftw-3.3.3/api/*.o
+    rm -f go_cart/cartogram_generator/cJSON.*
 
 fftw3:
     if [[ ! -d {{FFTW_PACKAGE}} ]]; then \

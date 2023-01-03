@@ -1,5 +1,6 @@
 build/
 cJSON-1.7.15/
+example/
 fftw-3.3.3/
 go_cart/
 .idea/
