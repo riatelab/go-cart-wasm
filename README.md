@@ -45,7 +45,6 @@ const GoCart = await initGoCart({
 Or in a HTML document:
 
 ```html
-```html
 <script src="https://cdn.jsdelivr.net/npm/go-cart-wasm@latest"></script>
 <script>
 let GoCart;
