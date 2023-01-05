@@ -89,4 +89,4 @@ Note that this has only been tested on GNU/Linux and that these instructions may
 ### License
 
 This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details.
-Underlying code by Gastner, Seguy, and More (2018) is licensed under a modified MIT License - see their [LICENSE](go_cart/LICENSE) file for details.
+Underlying code by Gastner, Seguy, and More (2018) is licensed under a modified MIT License - see their [LICENSE](https://github.com/Flow-Based-Cartograms/go_cart/blob/master/LICENSE) file for details.
