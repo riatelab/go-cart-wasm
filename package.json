@@ -1,6 +1,6 @@
 {
   "name": "go-cart-wasm",
-  "version": "0.2.0",
+  "version": "0.3.0",
   "description": "Flow-Based Cartogram Generator in WASM",
   "files": [
     "dist/cart.wasm",
