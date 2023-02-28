@@ -1,5 +1,7 @@
 ## Go-cart-wasm
 
+![](./logo-go-cart-wasm.png)
+
 `Go-cart-wasm` is a JS/WASM library for making flow-based cartograms (as described in "*Gastner, Seguy, and More (2018). Fast flow-based algorithm for creating density-equalizing map projections. Proceedings of the National Academy of Sciences USA, 115:E2156-E2164*"), purely in the browser.
 
 This is a port of the [reference implementation](https://github.com/Flow-Based-Cartograms/go_cart) provided by the authors (however we needed to slightly modify some minor aspects of the code, and our modified version is located [here](https://github.com/Flow-Based-Cartograms/go_cart/tree/wasm-mod)).
@@ -61,6 +63,10 @@ Note that the data that is passed to the `makeCartogram` function must be a vali
 Moreover, the data have to be in a projected reference coordinate system that maintains the areas of the polygons (e.g. Lambert-93 / EPSG:2154 for Metropolitan France, EPSG:3035 for the European Union, etc.). Performing the calculation in geographic coordinates (e.g. EPSG:4326) would give erroneous results.
 
 Note also that by default the calculation is done in the main thread. The freedom is left to the user to import go-cart.js from a webworker and use it that way (nevertheless you will have to implement a basic dialogue between the main thread and the webworker).
+
+### Example
+
+See for example this [Observable Notebook](https://observablehq.com/@riate/flow-based-cartograms-gastner-seguy-more-2018-in-the-browse).
 
 ### Installation for development
 
