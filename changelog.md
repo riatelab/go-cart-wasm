@@ -1,6 +1,6 @@
 # Changelog
 
-### 0.3.0 (unreleased)
+### 0.3.0 (2023-01-05)
 
 - Introduce a new stop condition if the maximal absolute area error is not decreasing anymore and starts to increase.
 
