@@ -19,6 +19,9 @@ fftw3:
         wget http://www.fftw.org/{{FFTW_PACKAGE}}.tar.gz; \
         tar -xzf {{FFTW_PACKAGE}}.tar.gz; \
         rm {{FFTW_PACKAGE}}.tar.gz; \
+        cd {{FFTW_PACKAGE}}; \
+        echo '{ "type" : "commonjs" }' > package.json; \
+        cd ..; \
     fi
     cd {{FFTW_PACKAGE}} && \
     CFLAGS='-O3' emconfigure ./configure --disable-fortran && \
