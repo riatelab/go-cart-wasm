@@ -4,7 +4,7 @@
 
 `Go-cart-wasm` is a JS/WASM library for making flow-based cartograms (as described in "*Gastner, Seguy, and More (2018). Fast flow-based algorithm for creating density-equalizing map projections. Proceedings of the National Academy of Sciences USA, 115:E2156-E2164*"), purely in the browser.
 
-This is a port of the [reference implementation](https://github.com/Flow-Based-Cartograms/go_cart) provided by the authors (however we needed to slightly modify some minor aspects of the code, and our modified version is located [here](https://github.com/Flow-Based-Cartograms/go_cart/tree/wasm-mod)).
+This is a port of the [reference implementation](https://github.com/Flow-Based-Cartograms/go_cart) provided by the authors (however we needed to slightly modify some minor aspects of the code, and our modified version is located [here](https://github.com/mthh/go_cart/tree/wasm-mod)).
 
 ### Usage
 
