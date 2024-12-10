@@ -41,6 +41,7 @@ build-deps: clean fftw3 cjson
 build DEBUG="":
     rm -rf build
     mkdir -p build
+    rm -rf dist
     cd go_cart/cartogram_generator && \
     emcc --bind -I../../{{FFTW_PACKAGE}}/api -L../../{{FFTW_PACKAGE}}/.libs -DUSE_FFTW -lfftw3 main.c cartogram.c ffb_integrate.c fill_with_density.c ps_figure.c read_map.c process_json.c cJSON.c \
         {{ if DEBUG == "DEBUG" { "-DDEBUG" } else { "" } }} \
