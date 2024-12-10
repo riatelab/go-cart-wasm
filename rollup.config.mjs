@@ -27,10 +27,21 @@ export default [
       })
     ],
     input: 'src/index.js',
-    output: {
-      file: 'dist/go-cart.js',
-      format: 'umd',
-      name: 'initGoCart',
-    }
+    output: [
+      {
+        file: 'dist/go-cart.cjs',
+        format: 'cjs',
+        exports: 'auto',
+      },
+      {
+        file: 'dist/go-cart.mjs',
+        format: 'esm',
+      },
+      {
+        file: 'dist/go-cart.js',
+        format: 'umd',
+        name: 'GoCart',
+      },
+    ]
   },
 ];
