@@ -31,7 +31,23 @@ initGoCart()
   });
 ```
 
-Optionally, and depending on how you import the library, you may also need to pass a `config` object as argument to the `initGoCart` function, which can contain the `locateFile` property: if set, it will be used to locate the WASM file (which is needed by the library). For example:
+Optionally, and depending on how you import the library, you may also need to pass a `config` object as argument to the `initGoCart` function, which can contain the `locateFile` property: if set, it will be used to locate the WASM file (which is needed by the library).
+
+For example with the [Vite](https://vite.dev/) build tool:
+
+```js
+import initGoCart from 'go-cart-wasm';
+import goCartWasm from 'go-cart-wasm/dist/cart.wasm';
+
+initGoCart({
+  locateFile: () => goCartWasm,
+}).then((GoCart) => {
+   // Use GoCart as in the previous example
+   // ...
+});
+```
+
+Or using [unpkg](https://unpkg.com/) and require:
 
 ```js
 const initGoCart = require("https://unpkg.com/go-cart-wasm@latest/dist/go-cart.cjs");
