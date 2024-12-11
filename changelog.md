@@ -1,5 +1,10 @@
 # Changelog
 
+### 0.5.0 (2024-12-11)
+
+- Improve the `exports` section of the package.json file to ease the use of the
+  library with Vite since the changes made in v0.4.0.
+
 ### 0.4.0 (2024-12-11)
 
 - Fix output formats of rollup build (to expose the library as a ESM, CJS, and UMD module).
