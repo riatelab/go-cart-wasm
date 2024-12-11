@@ -34,7 +34,7 @@ initGoCart()
 Optionally, and depending on how you import the library, you may also need to pass a `config` object as argument to the `initGoCart` function, which can contain the `locateFile` property: if set, it will be used to locate the WASM file (which is needed by the library). For example:
 
 ```js
-const initGoCart = require("https://unpkg.com/go-cart-wasm@latest/dist/go-cart.js");
+const initGoCart = require("https://unpkg.com/go-cart-wasm@latest/dist/go-cart.cjs");
 
 const GoCart = await initGoCart({
   locateFile: (path) => 'https://unpkg.com/go-cart-wasm@latest/dist/cart.wasm',
