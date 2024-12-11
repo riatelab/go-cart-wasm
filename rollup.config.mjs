@@ -40,7 +40,7 @@ export default [
       {
         file: 'dist/go-cart.js',
         format: 'umd',
-        name: 'GoCart',
+        name: 'initGoCart',
       },
     ]
   },
