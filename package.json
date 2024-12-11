@@ -6,9 +6,15 @@
   "module": "./dist/go-cart.mjs",
   "browser": "./dist/go-cart.js",
   "exports": {
-    "import": "./dist/go-cart.mjs",
-    "require": "./dist/go-cart.cjs",
-    "default": "./dist/go-cart.cjs"
+    ".": {
+      "import": "./dist/go-cart.mjs",
+      "require": "./dist/go-cart.cjs",
+      "default": "./dist/go-cart.cjs"
+    },
+    "./dist/*.wasm": {
+      "import": "./dist/*.wasm",
+      "require": "./dist/*.wasm"
+    }
   },
   "files": [
     "dist/",
